@@ -1,0 +1,12 @@
+PODS:
+  - ARKitEnvironmentMapper (0.3.0)
+
+DEPENDENCIES:
+  - ARKitEnvironmentMapper
+
+SPEC CHECKSUMS:
+  ARKitEnvironmentMapper: ea7aa807e05d54e961424ef94f2dba7f1d435d65
+
+PODFILE CHECKSUM: a4850a3f571261773cf09291bc511361d1980cf0
+
+COCOAPODS: 1.4.0

@@ -1,0 +1,6 @@
+framework module ARKitEnvironmentMapper {
+  umbrella header "ARKitEnvironmentMapper-umbrella.h"
+
+  export *
+  module * { export * }
+}

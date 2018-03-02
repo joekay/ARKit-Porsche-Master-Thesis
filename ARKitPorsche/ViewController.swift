@@ -1,6 +1,7 @@
 import ARKit
 import SceneKit
 import UIKit
+import ARKitEnvironmentMapper
 
 class ViewController: UIViewController {
     
@@ -49,6 +50,8 @@ class ViewController: UIViewController {
         let bounds = sceneView.bounds
         return CGPoint(x: bounds.midX, y: bounds.midY)
     }
+    
+    let environmentMapper = ARKitEnvironmentMapper(withImageName: "room")
     
     /// Convenience accessor for the session owned by ARSCNView.
     var session: ARSession {
@@ -204,7 +207,7 @@ class ViewController: UIViewController {
         ambientLightNode.light = SCNLight()
         ambientLightNode.light!.type = .ambient
         ambientLightNode.light!.color = UIColor.darkGray
-        ambientLightNode.light!.intensity = 7000
+        ambientLightNode.light!.intensity = 8000
         
         ResetLightBtn.isEnabled = false
         
