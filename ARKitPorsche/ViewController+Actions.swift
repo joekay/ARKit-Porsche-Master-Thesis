@@ -39,6 +39,7 @@ extension ViewController: UIGestureRecognizerDelegate {
         
         ResetLightBtn.isHidden = true
         ARKitLightingBtn.isHidden = true
+        ShowHideSettingsBtn.isHidden = true
         
         addObjectButton.isEnabled = true
         addObjectButton.setImage(#imageLiteral(resourceName: "add"), for: [])

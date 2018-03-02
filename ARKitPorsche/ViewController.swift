@@ -13,9 +13,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var ResetLightBtn: UIButton!
     @IBOutlet weak var ARKitLightingBtn: UIButton!
+    @IBOutlet weak var ShowHideSettingsBtn: UIButton!
     
     var lightNode: SCNNode!
     var ambientLightNode: SCNNode!
+    
+    // Bool for settings
+    var showSettings = true
     
     // UI Elements
     var focusSquare = FocusSquare()
@@ -51,7 +55,7 @@ class ViewController: UIViewController {
         return CGPoint(x: bounds.midX, y: bounds.midY)
     }
     
-    let environmentMapper = ARKitEnvironmentMapper(withImageName: "room")
+    /*let environmentMapper = ARKitEnvironmentMapper(withImageName: "room")*/
     
     /// Convenience accessor for the session owned by ARSCNView.
     var session: ARSession {
@@ -73,13 +77,11 @@ class ViewController: UIViewController {
         setupCamera()
         sceneView.scene.rootNode.addChildNode(focusSquare)
 
+        ShowHideSettingsBtn.isHidden = true
         ARKitLightingBtn.isHidden = true
         ResetLightBtn.isHidden = true
         
         sceneView.automaticallyUpdatesLighting = false
-        /*if let environmentMap = UIImage(named: "Models.scnassets/environment_blur.exr") {
-            sceneView.scene.lightingEnvironment.contents = environmentMap
-        }*/
         
         // Hook up status view controller callback(s).
         statusViewController.restartExperienceHandler = { [unowned self] in
@@ -199,6 +201,23 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func ShowHideSettings(_ sender: Any) {
+        showSettings = !showSettings
+        
+        if showSettings {
+            ShowHideSettingsBtn.setTitle("Hide", for: .normal)
+            ARKitLightingBtn.isHidden = false
+            ResetLightBtn.isHidden = false
+            
+        } else {
+            ShowHideSettingsBtn.setTitle("Show", for: .normal)
+            ARKitLightingBtn.isHidden = true
+            ResetLightBtn.isHidden = true
+        }
+        
+    }
+    
+    
     
     // Function for reseting light to standard mode
     func addAmbientLight(){
@@ -225,7 +244,7 @@ class ViewController: UIViewController {
         
         ambientLightNode.removeFromParentNode()
         
-        self.sceneView.session.configuration!.isLightEstimationEnabled = true
+    self.sceneView.session.configuration!.isLightEstimationEnabled = true
         
         if let environmentMap = UIImage(named: "Models.scnassets/environment_blur.exr") {
             sceneView.scene.lightingEnvironment.contents = environmentMap

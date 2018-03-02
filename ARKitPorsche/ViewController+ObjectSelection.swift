@@ -24,6 +24,7 @@ extension ViewController: VirtualObjectSelectionViewControllerDelegate {
         
         ResetLightBtn.isHidden = false
         ResetLightBtn.isEnabled = false
+        ShowHideSettingsBtn.isHidden = false
         
         ARKitLightingBtn.isHidden = false
         

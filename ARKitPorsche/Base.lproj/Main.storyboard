@@ -143,7 +143,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nA6-Dg-L3p">
-                                <rect key="frame" x="640" y="294" width="91" height="30"/>
+                                <rect key="frame" x="640" y="224" width="91" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="91" id="Dse-ss-RGY"/>
@@ -153,8 +153,21 @@
                                     <action selector="ResetLight:" destination="BV1-FR-VrT" eventType="touchUpInside" id="4ZT-dW-ln3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdo-51-UIq">
+                                <rect key="frame" x="640" y="280" width="91" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="f36-ru-n2H"/>
+                                </constraints>
+                                <state key="normal" title="Hide">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="ShowHideSettings:" destination="BV1-FR-VrT" eventType="touchUpInside" id="qDc-jo-3kf"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pwp-oQ-LnZ">
-                                <rect key="frame" x="640" y="254" width="91" height="30"/>
+                                <rect key="frame" x="640" y="184" width="91" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="91" id="sAG-Im-4lB"/>
@@ -177,22 +190,24 @@
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="width" secondItem="xcf-ic-uGo" secondAttribute="width" constant="-5" id="Fg7-D6-Eh5"/>
                             <constraint firstAttribute="trailing" secondItem="R5W-V8-6lY" secondAttribute="trailing" id="J42-1v-Ihf"/>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="centerX" secondItem="xcf-ic-uGo" secondAttribute="centerX" id="KPf-Pf-2mp"/>
+                            <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="sdo-51-UIq" secondAttribute="trailing" constant="37" id="Qsy-RU-xoH"/>
                             <constraint firstItem="tnx-rc-95S" firstAttribute="top" secondItem="GBj-4O-Whc" secondAttribute="top" id="Sdx-fT-fqG"/>
                             <constraint firstItem="tnx-rc-95S" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="Tna-9r-UZM"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="Pwp-oQ-LnZ" secondAttribute="trailing" constant="37" id="U0Y-Bt-Tj6"/>
+                            <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="sdo-51-UIq" secondAttribute="bottom" constant="44" id="VWH-wf-s6W"/>
                             <constraint firstItem="R5W-V8-6lY" firstAttribute="leading" secondItem="RLh-bf-1c3" secondAttribute="leading" id="Yj0-Fo-B5n"/>
                             <constraint firstItem="xcf-ic-uGo" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" constant="163.5" id="ajJ-d9-mOg"/>
                             <constraint firstItem="E6c-py-dvH" firstAttribute="top" secondItem="RLh-bf-1c3" secondAttribute="top" id="boO-ZZ-neH"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" constant="-46" id="brT-qF-Rdk"/>
                             <constraint firstItem="tnx-rc-95S" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="cGf-LE-hzb"/>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="centerY" secondItem="xcf-ic-uGo" secondAttribute="centerY" id="dtP-zr-OKq"/>
+                            <constraint firstItem="sdo-51-UIq" firstAttribute="top" secondItem="nA6-Dg-L3p" secondAttribute="bottom" constant="26" id="eB9-0f-Rn1"/>
                             <constraint firstItem="R5W-V8-6lY" firstAttribute="top" secondItem="RLh-bf-1c3" secondAttribute="top" id="fDn-zw-Oo2"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="nA6-Dg-L3p" secondAttribute="trailing" constant="37" id="j5L-TP-fPF"/>
                             <constraint firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" id="kLb-BI-xJ4"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="xcf-ic-uGo" secondAttribute="trailing" constant="163.5" id="kN8-Ve-Xqq"/>
                             <constraint firstAttribute="bottom" secondItem="R5W-V8-6lY" secondAttribute="bottom" id="poH-DX-LIv"/>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="height" secondItem="xcf-ic-uGo" secondAttribute="height" constant="-5" id="szW-aA-CXv"/>
-                            <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="nA6-Dg-L3p" secondAttribute="bottom" constant="30" id="uNM-bw-cac"/>
                             <constraint firstItem="E6c-py-dvH" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" constant="-44" id="wEL-Op-yTe"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="tnx-rc-95S" secondAttribute="trailing" id="yUU-ir-Rk1"/>
                         </constraints>
@@ -201,6 +216,7 @@
                     <connections>
                         <outlet property="ARKitLightingBtn" destination="Pwp-oQ-LnZ" id="Q1i-y3-im0"/>
                         <outlet property="ResetLightBtn" destination="nA6-Dg-L3p" id="VXz-n6-5SK"/>
+                        <outlet property="ShowHideSettingsBtn" destination="sdo-51-UIq" id="H8V-0z-OXr"/>
                         <outlet property="addObjectButton" destination="xcf-ic-uGo" id="uFa-W2-4Iu"/>
                         <outlet property="blurView" destination="R5W-V8-6lY" id="oF2-lD-Srf"/>
                         <outlet property="sceneView" destination="E6c-py-dvH" id="Gr4-Uw-Z4A"/>
