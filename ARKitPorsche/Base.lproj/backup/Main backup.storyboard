@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14092" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
-    <device id="retina5_9" orientation="landscape">
+    <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,23 +15,23 @@
             <objects>
                 <viewController id="ri3-7p-e6d" customClass="StatusViewController" customModule="ARKitPorsche" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RAa-Gm-0Pa">
-                        <rect key="frame" x="0.0" y="0.0" width="724" height="85"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="1uT-CF-YpX" userLabel="Message Panel">
-                                <rect key="frame" x="60" y="20" width="125" height="31.666666666666671"/>
+                                <rect key="frame" x="16" y="20" width="125" height="32"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SfJ-mv-Jb9">
-                                    <rect key="frame" x="0.0" y="0.0" width="125" height="31.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="125" height="32"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ac7-7y-dTM">
-                                            <rect key="frame" x="0.0" y="0.0" width="125" height="32.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="125" height="33"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="d6V-vA-DSm">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="32.666666666666664"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" text="Tracking status" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6b-bh-aZK" userLabel="Messages label">
-                                                        <rect key="frame" x="16" y="7.9999999999999991" width="93" height="15.666666666666664"/>
+                                                        <rect key="frame" x="16" y="8" width="93" height="16"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                         <nil key="textColor"/>
                                                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,7 +67,7 @@
                                 </userDefinedRuntimeAttributes>
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSK-t0-G4r" userLabel="Restart Experience Button Icon">
-                                <rect key="frame" x="636" y="0.0" width="44" height="59"/>
+                                <rect key="frame" x="331" y="0.0" width="44" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="59" id="0Aj-uI-nvb"/>
                                     <constraint firstAttribute="width" constant="44" id="AJj-0E-eVh"/>
@@ -100,29 +100,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g9h-Vm-ZUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="626" y="-583"/>
+            <point key="canvasLocation" x="106" y="-433"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
                 <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="ARKitPorsche" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="RLh-bf-1c3">
-                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="RLh-bf-1c3">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" wantsMultisampling="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E6c-py-dvH" customClass="VirtualObjectARView" customModule="ARKitPorsche" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="814" height="375"/>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" wantsMultisampling="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E6c-py-dvH" customClass="VirtualObjectARView" customModule="ARKitPorsche" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                             </sceneKitView>
-                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R5W-V8-6lY">
-                                <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="AjQ-5W-To9">
-                                    <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R5W-V8-6lY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="AjQ-5W-To9">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tnx-rc-95S">
-                                <rect key="frame" x="44" y="0.0" width="724" height="85"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tnx-rc-95S">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="z9S-1J-UzK"/>
                                 </constraints>
@@ -130,9 +130,21 @@
                                     <segue destination="ri3-7p-e6d" kind="embed" id="uiU-1f-e8S"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcf-ic-uGo" userLabel="Add Object Button">
-                                <rect key="frame" x="207.66666666666663" y="266" width="397" height="48"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pwp-oQ-LnZ">
+                                <rect key="frame" x="300" y="420" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="A"/>
+                                <connections>
+                                    <action selector="ARKitLightingBtn:" destination="mIu-R6-9gx" eventType="touchUpInside" id="UjB-yR-haj"/>
+                                    <action selector="BtnAPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="C2f-ix-760"/>
+                                    <action selector="BtnAPressed:" destination="mIu-R6-9gx" eventType="touchUpInside" id="OwH-ev-Anm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcf-ic-uGo" userLabel="Add Object Button">
+                                <rect key="frame" x="163.5" y="227" width="48" height="48"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="NZv-Ts-4dl"/>
                                     <constraint firstAttribute="height" constant="48" id="Z1M-DD-gjO"/>
                                 </constraints>
                                 <state key="normal" image="add">
@@ -142,65 +154,35 @@
                                     <action selector="showVirtualObjectSelectionViewController" destination="BV1-FR-VrT" eventType="touchUpInside" id="zNz-qB-P16"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nA6-Dg-L3p">
-                                <rect key="frame" x="640" y="300" width="91" height="30"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="91" id="Dse-ss-RGY"/>
-                                </constraints>
-                                <state key="normal" title="Reset Light"/>
-                                <connections>
-                                    <action selector="ResetLight:" destination="BV1-FR-VrT" eventType="touchUpInside" id="4ZT-dW-ln3"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pwp-oQ-LnZ">
-                                <rect key="frame" x="640" y="260" width="91" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="91" id="sAG-Im-4lB"/>
-                                </constraints>
-                                <state key="normal" title="Light A"/>
-                                <connections>
-                                    <action selector="ARKitLightingBtn:" destination="mIu-R6-9gx" eventType="touchUpInside" id="UjB-yR-haj"/>
-                                    <action selector="BtnAPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="C2f-ix-760"/>
-                                    <action selector="BtnAPressed:" destination="mIu-R6-9gx" eventType="touchUpInside" id="OwH-ev-Anm"/>
-                                </connections>
-                            </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="3cb-dQ-oXx">
-                                <rect key="frame" x="210" y="269" width="392" height="43"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="3cb-dQ-oXx">
+                                <rect key="frame" x="166" y="230" width="43" height="43"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nA6-Dg-L3p" firstAttribute="top" secondItem="Pwp-oQ-LnZ" secondAttribute="bottom" constant="10" id="4aI-oh-YpX"/>
-                            <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="xcf-ic-uGo" secondAttribute="bottom" constant="40" id="6IT-s3-ATX"/>
+                            <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="xcf-ic-uGo" secondAttribute="bottom" constant="100" id="6IT-s3-ATX"/>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="width" secondItem="xcf-ic-uGo" secondAttribute="width" constant="-5" id="Fg7-D6-Eh5"/>
                             <constraint firstAttribute="trailing" secondItem="R5W-V8-6lY" secondAttribute="trailing" id="J42-1v-Ihf"/>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="centerX" secondItem="xcf-ic-uGo" secondAttribute="centerX" id="KPf-Pf-2mp"/>
                             <constraint firstItem="tnx-rc-95S" firstAttribute="top" secondItem="GBj-4O-Whc" secondAttribute="top" id="Sdx-fT-fqG"/>
-                            <constraint firstItem="tnx-rc-95S" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="Tna-9r-UZM"/>
-                            <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="Pwp-oQ-LnZ" secondAttribute="trailing" constant="37" id="U0Y-Bt-Tj6"/>
                             <constraint firstItem="R5W-V8-6lY" firstAttribute="leading" secondItem="RLh-bf-1c3" secondAttribute="leading" id="Yj0-Fo-B5n"/>
                             <constraint firstItem="xcf-ic-uGo" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" constant="163.5" id="ajJ-d9-mOg"/>
                             <constraint firstItem="E6c-py-dvH" firstAttribute="top" secondItem="RLh-bf-1c3" secondAttribute="top" id="boO-ZZ-neH"/>
-                            <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" constant="-46" id="brT-qF-Rdk"/>
+                            <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" id="brT-qF-Rdk"/>
                             <constraint firstItem="tnx-rc-95S" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="cGf-LE-hzb"/>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="centerY" secondItem="xcf-ic-uGo" secondAttribute="centerY" id="dtP-zr-OKq"/>
                             <constraint firstItem="R5W-V8-6lY" firstAttribute="top" secondItem="RLh-bf-1c3" secondAttribute="top" id="fDn-zw-Oo2"/>
-                            <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="nA6-Dg-L3p" secondAttribute="trailing" constant="37" id="j5L-TP-fPF"/>
                             <constraint firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" id="kLb-BI-xJ4"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="xcf-ic-uGo" secondAttribute="trailing" constant="163.5" id="kN8-Ve-Xqq"/>
                             <constraint firstAttribute="bottom" secondItem="R5W-V8-6lY" secondAttribute="bottom" id="poH-DX-LIv"/>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="height" secondItem="xcf-ic-uGo" secondAttribute="height" constant="-5" id="szW-aA-CXv"/>
-                            <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="nA6-Dg-L3p" secondAttribute="bottom" constant="24" id="uNM-bw-cac"/>
-                            <constraint firstItem="E6c-py-dvH" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" constant="-44" id="wEL-Op-yTe"/>
+                            <constraint firstItem="E6c-py-dvH" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="wEL-Op-yTe"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="tnx-rc-95S" secondAttribute="trailing" id="yUU-ir-Rk1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GBj-4O-Whc"/>
                     </view>
                     <connections>
                         <outlet property="ARKitLightingBtn" destination="Pwp-oQ-LnZ" id="Q1i-y3-im0"/>
-                        <outlet property="ResetLightBtn" destination="nA6-Dg-L3p" id="VXz-n6-5SK"/>
                         <outlet property="addObjectButton" destination="xcf-ic-uGo" id="uFa-W2-4Iu"/>
                         <outlet property="blurView" destination="R5W-V8-6lY" id="oF2-lD-Srf"/>
                         <outlet property="sceneView" destination="E6c-py-dvH" id="Gr4-Uw-Z4A"/>
@@ -213,7 +195,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <exit id="mIu-R6-9gx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="56.157635467980299" y="98.400000000000006"/>
+            <point key="canvasLocation" x="56.799999999999997" y="98.50074962518741"/>
         </scene>
         <!--Virtual Object Selection View Controller-->
         <scene sceneID="8F1-Zd-946">
@@ -229,11 +211,11 @@
                                 <rect key="frame" x="0.0" y="28" width="250" height="99"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KgU-Le-H6A" id="k0i-d1-4Iu">
-                                    <rect key="frame" x="44" y="0.0" width="162" height="98.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="98.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c48-rC-1yt">
-                                            <rect key="frame" x="0.0" y="-1" width="162" height="101"/>
+                                            <rect key="frame" x="0.0" y="-1" width="250" height="100"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K1e-G9-g3C">

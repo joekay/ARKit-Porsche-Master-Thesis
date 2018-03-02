@@ -37,6 +37,7 @@ extension ViewController: UIGestureRecognizerDelegate {
 
         virtualObjectLoader.removeAllVirtualObjects()
         
+        ResetLightBtn.isHidden = true
         ARKitLightingBtn.isHidden = true
         
         addObjectButton.isEnabled = true

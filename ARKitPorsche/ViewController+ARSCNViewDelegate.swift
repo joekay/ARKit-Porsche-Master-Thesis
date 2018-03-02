@@ -13,8 +13,6 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
 			let planeAnchor = focusSquare.currentPlaneAnchor
 			objectsViewController?.updateObjectAvailability(for: planeAnchor)
 		}
-		
-        //updateLightNodesLightEstimation()
         
         // If light estimation is enabled, update the intensity of the model's lights and the environment map
         let baseIntensity: CGFloat = 70
