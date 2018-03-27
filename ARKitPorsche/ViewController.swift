@@ -2,6 +2,7 @@ import ARKit
 import SceneKit
 import UIKit
 import ARKitEnvironmentMapper
+import CoreLocation // Sun position stuff
 
 class ViewController: UIViewController {
     
@@ -11,8 +12,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
+    // Outlets for the appearing buttons after placing car
     @IBOutlet weak var ResetLightBtn: UIButton!
     @IBOutlet weak var ARKitLightingBtn: UIButton!
+    @IBOutlet weak var EnhARKitLightingBtn: UIButton!
+    @IBOutlet weak var EnvMapBtn: UIButton!
     @IBOutlet weak var ShowHideSettingsBtn: UIButton!
     
     var lightNode: SCNNode!
@@ -20,6 +24,16 @@ class ViewController: UIViewController {
     
     // Bool for settings
     var showSettings = true
+    
+    // Bool for starting/stopping environment mapper
+    var mapperActive = false
+    var lightBActive = false
+    
+    var testBool = false
+    
+    var BaseIntensity: CGFloat = 40.0
+    
+    var counter: Int = 0;
     
     // UI Elements
     var focusSquare = FocusSquare()
@@ -32,7 +46,16 @@ class ViewController: UIViewController {
 	// The view controller that displays the virtual object selection menu.
 	var objectsViewController: VirtualObjectSelectionViewController?
     
+    
+    
     var lighting = Lighting()
+    
+    
+    // SUNPOSITIONSTUFF
+    // var locManager = CLLocationManager()
+    // locManager.requestWhenInUseAuthorization()
+    
+    
     
     // MARK: - ARKit Configuration Properties
     
@@ -55,7 +78,9 @@ class ViewController: UIViewController {
         return CGPoint(x: bounds.midX, y: bounds.midY)
     }
     
-    /*let environmentMapper = ARKitEnvironmentMapper(withImageName: "room")*/
+    let environmentMapper = ARKitEnvironmentMapper(withImageName: "roomgrey")
+    //let environmentMapper = ARKitEnvironmentMapper(withMapHeight: 512, withDefaultColor: .red)
+    //let environmentMapper = ARKitEnvironmentMapper(withImageName: "environment_blur.exr")
     
     /// Convenience accessor for the session owned by ARSCNView.
     var session: ARSession {
@@ -79,6 +104,8 @@ class ViewController: UIViewController {
 
         ShowHideSettingsBtn.isHidden = true
         ARKitLightingBtn.isHidden = true
+        EnhARKitLightingBtn.isHidden = true
+        EnvMapBtn.isHidden = true
         ResetLightBtn.isHidden = true
         
         sceneView.automaticallyUpdatesLighting = false
@@ -101,8 +128,11 @@ class ViewController: UIViewController {
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-        session.pause()
 	}
+    
+    /*override func viewWillAppear(_ animated: Bool) {
+        resetTracking()
+    }*/
 
     
     // MARK: - Scene content setup
@@ -126,6 +156,7 @@ class ViewController: UIViewController {
         configuration.planeDetection = [.horizontal]
         // configuration.planeDetection = [.horizontal, .vertical]
         
+        ambientLightNode?.removeFromParentNode()
         addAmbientLight()
         
         //configuration.isLightEstimationEnabled = false
@@ -182,13 +213,70 @@ class ViewController: UIViewController {
         alertController.addAction(restartAction)
         present(alertController, animated: true, completion: nil)
     }
-    
+
     // ARKit Lighting button
     @IBAction func BtnAPressed(_ sender: Any) {
-
-        ResetLightBtn.isEnabled = true
-        ActivateEnvMap()
         
+        if lightBActive == true{
+            lightBActive = false
+        }
+        ResetLightBtn.isEnabled = true
+        testBool = !testBool
+        
+        BaseIntensity = 40.0
+        
+        ambientLightNode.removeFromParentNode()
+        self.sceneView.session.configuration?.isLightEstimationEnabled = true
+        
+        if let environmentMap = UIImage(named: "Models.scnassets/environment_blur.exr") {
+            sceneView.scene.lightingEnvironment.contents = environmentMap
+        }
+    }
+    
+    @IBAction func BtnBPressed(_ sender: Any) {
+        ResetLightBtn.isEnabled = true
+        lightBActive = !lightBActive
+        BaseIntensity = 60.0
+        
+        ambientLightNode.removeFromParentNode()
+        self.sceneView.session.configuration?.isLightEstimationEnabled = true
+        
+        //print(lighting.sun(date: <#T##Date#>, lat: 48.894062, lon: 9.195464))
+        
+        /*if let environmentMap = UIImage(named: "Models.scnassets/StaticEnvMap/environment.jpg") {
+            sceneView.scene.lightingEnvironment.contents = environmentMap
+            //print(sceneView.scene.lightingEnvironment.intensity)
+        }*/
+        
+    }
+    
+    
+    @IBAction func BtnCPressed(_ sender: Any) {
+        mapperActive = !mapperActive
+        ResetLightBtn.isEnabled = true
+        
+        if lightBActive == true{
+            lightBActive = false
+        }
+        
+        if mapperActive {
+            environmentMapper?.startMapping()
+            EnvMapBtn.setTitle("Light C Stop", for: .normal)
+        } else {
+            environmentMapper?.stopMapping()
+            
+            BaseIntensity = 330.0
+            
+            EnvMapBtn.setTitle("Light C Done", for: .normal)
+            
+            ambientLightNode.removeFromParentNode()
+            self.sceneView.session.configuration?.isLightEstimationEnabled = false
+            
+            sceneView.scene.lightingEnvironment.contents = environmentMapper?.currentEnvironmentMap(as: .cgImage)
+            print(sceneView.scene.lightingEnvironment.intensity)
+            
+            EnvMapBtn.isEnabled = false
+        }
     }
     
     // Reset Light button
@@ -198,7 +286,11 @@ class ViewController: UIViewController {
         // which illuminates the scene more every click
         RemoveAmbient()
         addAmbientLight()
-        
+        EnvMapBtn.isEnabled = true
+        EnvMapBtn.setTitle("Light C Start", for: .normal)
+        if lightBActive == true{
+            lightBActive = false
+        }
     }
     
     @IBAction func ShowHideSettings(_ sender: Any) {
@@ -208,16 +300,18 @@ class ViewController: UIViewController {
             ShowHideSettingsBtn.setTitle("Hide", for: .normal)
             ARKitLightingBtn.isHidden = false
             ResetLightBtn.isHidden = false
+            EnvMapBtn.isHidden = false
+            EnhARKitLightingBtn.isHidden = false
             
         } else {
             ShowHideSettingsBtn.setTitle("Show", for: .normal)
             ARKitLightingBtn.isHidden = true
             ResetLightBtn.isHidden = true
+            EnvMapBtn.isHidden = true
+            EnhARKitLightingBtn.isHidden = true
         }
         
     }
-    
-    
     
     // Function for reseting light to standard mode
     func addAmbientLight(){
@@ -240,16 +334,6 @@ class ViewController: UIViewController {
         ambientLightNode.removeFromParentNode()
     }
     
-    func ActivateEnvMap(){
-        
-        ambientLightNode.removeFromParentNode()
-        
-    self.sceneView.session.configuration!.isLightEstimationEnabled = true
-        
-        if let environmentMap = UIImage(named: "Models.scnassets/environment_blur.exr") {
-            sceneView.scene.lightingEnvironment.contents = environmentMap
-        }
-    }
     
 }
 

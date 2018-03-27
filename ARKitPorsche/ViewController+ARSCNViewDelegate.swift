@@ -1,4 +1,5 @@
 import ARKit
+import VideoToolbox
 
 extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
     
@@ -14,13 +15,13 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
 			objectsViewController?.updateObjectAvailability(for: planeAnchor)
 		}
         
-        // If light estimation is enabled, update the intensity of the model's lights and the environment map
-        let baseIntensity: CGFloat = 70
+        // Settings for lighting environment incuding light intensity
         let lightingEnvironment = sceneView.scene.lightingEnvironment
         if let lightEstimate = session.currentFrame?.lightEstimate {
-            lightingEnvironment.intensity = lightEstimate.ambientIntensity / baseIntensity
+        lightingEnvironment.intensity = lightEstimate.ambientIntensity / BaseIntensity
+            //print(lightEstimate.ambientColorTemperature)
         } else {
-            lightingEnvironment.intensity = baseIntensity
+        lightingEnvironment.intensity = BaseIntensity
         }
         
     }
@@ -41,7 +42,7 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
         }
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, frame: ARFrame, for anchor: ARAnchor) {
         updateQueue.async {
             if let planeAnchor = anchor as? ARPlaneAnchor {
                 for object in self.virtualObjectLoader.loadedObjects {
@@ -67,6 +68,24 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
 			
 			// Unhide content after successful relocalization.
 			virtualObjectLoader.loadedObjects.forEach { $0.isHidden = false }
+        }
+    }
+    
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        if mapperActive{
+        if let environmentMapper = self.environmentMapper {
+            environmentMapper.updateMap(withFrame: frame)
+        }
+        }
+        if lightBActive{
+            print("Light b active")
+            /*
+            //VTCreateCGImageFromCVPixelBuffer(frame.capturedImage, nil, )
+            sceneView.scene.lightingEnvironment.contents = CreateCGImageFromCVPixelBuffer(pixelBuffer: frame.capturedImage)*/
+            var cgImage: CGImage?
+            VTCreateCGImageFromCVPixelBuffer(frame.capturedImage, nil, &cgImage)
+             sceneView.scene.lightingEnvironment.contents = cgImage
+            
         }
     }
     

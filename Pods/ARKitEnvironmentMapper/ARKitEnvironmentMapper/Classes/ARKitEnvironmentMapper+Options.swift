@@ -5,8 +5,8 @@ public extension ARKitEnvironmentMapper {
     public var experimentalExposureCorrectionEnabled: Bool
 
     public static var `default`: Options {
-      return Options(updatesPerSecond: 10,
-                     experimentalExposureCorrectionEnabled: false)
+      return Options(updatesPerSecond: 5,
+                     experimentalExposureCorrectionEnabled: true)
     }
   }
 }

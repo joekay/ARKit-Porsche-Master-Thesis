@@ -142,11 +142,46 @@
                                     <action selector="showVirtualObjectSelectionViewController" destination="BV1-FR-VrT" eventType="touchUpInside" id="zNz-qB-P16"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pwp-oQ-LnZ" userLabel="Light A (ARKit Lighting) Btn">
+                                <rect key="frame" x="640" y="92" width="91" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="91" id="sAG-Im-4lB"/>
+                                </constraints>
+                                <state key="normal" title="Light A"/>
+                                <connections>
+                                    <action selector="ARKitLightingBtn:" destination="mIu-R6-9gx" eventType="touchUpInside" id="UjB-yR-haj"/>
+                                    <action selector="BtnAPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="C2f-ix-760"/>
+                                    <action selector="BtnAPressed:" destination="mIu-R6-9gx" eventType="touchUpInside" id="OwH-ev-Anm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEi-zH-yIA" userLabel="Light B (Enhanced ARKit) Btn">
+                                <rect key="frame" x="640" y="136" width="91" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="91" id="3ci-uV-Fnh"/>
+                                </constraints>
+                                <state key="normal" title="Light B"/>
+                                <connections>
+                                    <action selector="BtnBPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="dUr-Sx-8BH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0iI-q8-26v" userLabel="Light C (EnvMap) Btn">
+                                <rect key="frame" x="640" y="180" width="91" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="91" id="poS-BI-tNo"/>
+                                </constraints>
+                                <state key="normal" title="Light C Start"/>
+                                <connections>
+                                    <action selector="BtnCPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Dcd-la-8i4"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nA6-Dg-L3p">
                                 <rect key="frame" x="640" y="224" width="91" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="91" id="Dse-ss-RGY"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="91" id="Dse-ss-RGY"/>
                                 </constraints>
                                 <state key="normal" title="Reset Light"/>
                                 <connections>
@@ -157,7 +192,7 @@
                                 <rect key="frame" x="640" y="280" width="91" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="91" id="f36-ru-n2H"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="91" id="f36-ru-n2H"/>
                                 </constraints>
                                 <state key="normal" title="Hide">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -166,36 +201,30 @@
                                     <action selector="ShowHideSettings:" destination="BV1-FR-VrT" eventType="touchUpInside" id="qDc-jo-3kf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pwp-oQ-LnZ">
-                                <rect key="frame" x="640" y="184" width="91" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="91" id="sAG-Im-4lB"/>
-                                </constraints>
-                                <state key="normal" title="Light A"/>
-                                <connections>
-                                    <action selector="ARKitLightingBtn:" destination="mIu-R6-9gx" eventType="touchUpInside" id="UjB-yR-haj"/>
-                                    <action selector="BtnAPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="C2f-ix-760"/>
-                                    <action selector="BtnAPressed:" destination="mIu-R6-9gx" eventType="touchUpInside" id="OwH-ev-Anm"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="3cb-dQ-oXx">
                                 <rect key="frame" x="210" y="269" width="392" height="43"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nA6-Dg-L3p" firstAttribute="top" secondItem="Pwp-oQ-LnZ" secondAttribute="bottom" constant="10" id="4aI-oh-YpX"/>
+                            <constraint firstItem="0iI-q8-26v" firstAttribute="top" secondItem="gEi-zH-yIA" secondAttribute="bottom" constant="14" id="1IS-GT-Qx0"/>
+                            <constraint firstItem="Pwp-oQ-LnZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RLh-bf-1c3" secondAttribute="leading" constant="20" symbolic="YES" id="38X-CK-wgI"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="xcf-ic-uGo" secondAttribute="bottom" constant="40" id="6IT-s3-ATX"/>
+                            <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="gEi-zH-yIA" secondAttribute="trailing" constant="37" id="864-y1-4vC"/>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="width" secondItem="xcf-ic-uGo" secondAttribute="width" constant="-5" id="Fg7-D6-Eh5"/>
+                            <constraint firstItem="nA6-Dg-L3p" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RLh-bf-1c3" secondAttribute="leading" constant="20" symbolic="YES" id="Fy6-mH-zl5"/>
                             <constraint firstAttribute="trailing" secondItem="R5W-V8-6lY" secondAttribute="trailing" id="J42-1v-Ihf"/>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="centerX" secondItem="xcf-ic-uGo" secondAttribute="centerX" id="KPf-Pf-2mp"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="sdo-51-UIq" secondAttribute="trailing" constant="37" id="Qsy-RU-xoH"/>
+                            <constraint firstItem="0iI-q8-26v" firstAttribute="top" secondItem="gEi-zH-yIA" secondAttribute="bottom" constant="14" id="ReJ-AG-K3d"/>
                             <constraint firstItem="tnx-rc-95S" firstAttribute="top" secondItem="GBj-4O-Whc" secondAttribute="top" id="Sdx-fT-fqG"/>
                             <constraint firstItem="tnx-rc-95S" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="Tna-9r-UZM"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="Pwp-oQ-LnZ" secondAttribute="trailing" constant="37" id="U0Y-Bt-Tj6"/>
+                            <constraint firstItem="gEi-zH-yIA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RLh-bf-1c3" secondAttribute="leading" constant="20" symbolic="YES" id="V4I-pk-miv"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="sdo-51-UIq" secondAttribute="bottom" constant="44" id="VWH-wf-s6W"/>
+                            <constraint firstItem="sdo-51-UIq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RLh-bf-1c3" secondAttribute="leading" constant="20" symbolic="YES" id="WGX-fw-mHH"/>
                             <constraint firstItem="R5W-V8-6lY" firstAttribute="leading" secondItem="RLh-bf-1c3" secondAttribute="leading" id="Yj0-Fo-B5n"/>
+                            <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="Pwp-oQ-LnZ" secondAttribute="trailing" constant="37" id="aGe-Bh-5Xp"/>
                             <constraint firstItem="xcf-ic-uGo" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" constant="163.5" id="ajJ-d9-mOg"/>
                             <constraint firstItem="E6c-py-dvH" firstAttribute="top" secondItem="RLh-bf-1c3" secondAttribute="top" id="boO-ZZ-neH"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="E6c-py-dvH" secondAttribute="trailing" constant="-46" id="brT-qF-Rdk"/>
@@ -203,11 +232,17 @@
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="centerY" secondItem="xcf-ic-uGo" secondAttribute="centerY" id="dtP-zr-OKq"/>
                             <constraint firstItem="sdo-51-UIq" firstAttribute="top" secondItem="nA6-Dg-L3p" secondAttribute="bottom" constant="26" id="eB9-0f-Rn1"/>
                             <constraint firstItem="R5W-V8-6lY" firstAttribute="top" secondItem="RLh-bf-1c3" secondAttribute="top" id="fDn-zw-Oo2"/>
+                            <constraint firstItem="gEi-zH-yIA" firstAttribute="top" secondItem="Pwp-oQ-LnZ" secondAttribute="bottom" constant="14" id="fjU-rP-rhE"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="nA6-Dg-L3p" secondAttribute="trailing" constant="37" id="j5L-TP-fPF"/>
+                            <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="0iI-q8-26v" secondAttribute="trailing" constant="37" id="jUW-7T-m4z"/>
+                            <constraint firstItem="gEi-zH-yIA" firstAttribute="top" secondItem="Pwp-oQ-LnZ" secondAttribute="bottom" constant="14" id="jsi-h6-BtQ"/>
                             <constraint firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" id="kLb-BI-xJ4"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="xcf-ic-uGo" secondAttribute="trailing" constant="163.5" id="kN8-Ve-Xqq"/>
+                            <constraint firstItem="nA6-Dg-L3p" firstAttribute="top" secondItem="0iI-q8-26v" secondAttribute="bottom" constant="14" id="maA-Do-VA5"/>
                             <constraint firstAttribute="bottom" secondItem="R5W-V8-6lY" secondAttribute="bottom" id="poH-DX-LIv"/>
+                            <constraint firstItem="0iI-q8-26v" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RLh-bf-1c3" secondAttribute="leading" constant="20" symbolic="YES" id="sYy-Nw-2t4"/>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="height" secondItem="xcf-ic-uGo" secondAttribute="height" constant="-5" id="szW-aA-CXv"/>
+                            <constraint firstItem="0iI-q8-26v" firstAttribute="top" secondItem="gEi-zH-yIA" secondAttribute="bottom" constant="14" id="tUm-oQ-bMz"/>
                             <constraint firstItem="E6c-py-dvH" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" constant="-44" id="wEL-Op-yTe"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="tnx-rc-95S" secondAttribute="trailing" id="yUU-ir-Rk1"/>
                         </constraints>
@@ -215,6 +250,8 @@
                     </view>
                     <connections>
                         <outlet property="ARKitLightingBtn" destination="Pwp-oQ-LnZ" id="Q1i-y3-im0"/>
+                        <outlet property="EnhARKitLightingBtn" destination="gEi-zH-yIA" id="CKF-v6-r9J"/>
+                        <outlet property="EnvMapBtn" destination="0iI-q8-26v" id="RpY-n3-LuU"/>
                         <outlet property="ResetLightBtn" destination="nA6-Dg-L3p" id="VXz-n6-5SK"/>
                         <outlet property="ShowHideSettingsBtn" destination="sdo-51-UIq" id="H8V-0z-OXr"/>
                         <outlet property="addObjectButton" destination="xcf-ic-uGo" id="uFa-W2-4Iu"/>

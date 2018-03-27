@@ -406,9 +406,11 @@ class FocusSquare: SCNNode {
 			let fadeOutAction = SCNAction.fadeOpacity(to: 0.0, duration: FocusSquare.animationDuration * 0.125)
             fillPlane.runAction(SCNAction.sequence([waitAction, fadeInAction, fadeOutAction]))
 			
-			let flashSquareAction = flashAnimation(duration: FocusSquare.animationDuration * 0.25)
+			/*let flashSquareAction = flashAnimation(duration: FocusSquare.animationDuration * 0.25)*/
             for segment in segments {
-                segment.runAction(.sequence([waitAction, flashSquareAction]))
+                //segment.runAction(.sequence([waitAction, flashSquareAction]))
+                
+                segment.runAction(.sequence([waitAction]))
             }
  		}
 	}
@@ -495,18 +497,5 @@ private func pulseAction() -> SCNAction {
     pulseInAction.timingMode = .easeInEaseOut
     
     return SCNAction.repeatForever(SCNAction.sequence([pulseOutAction, pulseInAction]))
-}
-
-private func flashAnimation(duration: TimeInterval) -> SCNAction {
-    let action = SCNAction.customAction(duration: duration) { (node, elapsedTime) -> Void in
-        // animate color from HSB 48/100/100 to 48/30/100 and back
-        let elapsedTimePercentage = elapsedTime / CGFloat(duration)
-        let saturation = 2.8 * (elapsedTimePercentage - 0.5) * (elapsedTimePercentage - 0.5) + 0.3
-        /*if let material = node.geometry?.firstMaterial {
-            material.diffuse.contents = UIColor(hue: 0.8333, saturation: saturation, brightness: 1.0, alpha: 1.0)
-            // 0.1333
-        }*/
-    }
-    return action
 }
 

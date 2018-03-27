@@ -21,12 +21,12 @@ extension ViewController: VirtualObjectSelectionViewControllerDelegate {
 		let focusSquareTransformWithoutScale = focusSquare.simdWorldTransform * scaleMatrix
         
         addObjectButton.isEnabled = false
-        
         ResetLightBtn.isHidden = false
         ResetLightBtn.isEnabled = false
         ShowHideSettingsBtn.isHidden = false
-        
         ARKitLightingBtn.isHidden = false
+        EnhARKitLightingBtn.isHidden = false
+        EnvMapBtn.isHidden = false
         
         virtualObjectInteraction.selectedObject = virtualObject
 		virtualObject.setTransform(focusSquareTransformWithoutScale,

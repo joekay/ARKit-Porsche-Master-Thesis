@@ -7,6 +7,7 @@ Utility functions and type extensions used throughout the projects.
 
 import Foundation
 import ARKit
+import VideoToolbox
 
 // MARK: - float4x4 extensions
 
