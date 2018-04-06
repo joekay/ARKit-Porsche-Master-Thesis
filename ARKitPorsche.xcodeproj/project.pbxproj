@@ -200,9 +200,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3929C4871E89EC2C00E00B60 /* ARKitInteraction */ = {
+		3929C4871E89EC2C00E00B60 /* ARKitPorsche */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3929C49A1E89EC2C00E00B60 /* Build configuration list for PBXNativeTarget "ARKitInteraction" */;
+			buildConfigurationList = 3929C49A1E89EC2C00E00B60 /* Build configuration list for PBXNativeTarget "ARKitPorsche" */;
 			buildPhases = (
 				81108C61E1CE69C3C20A275B /* [CP] Check Pods Manifest.lock */,
 				3929C4841E89EC2C00E00B60 /* Sources */,
@@ -215,7 +215,7 @@
 			);
 			dependencies = (
 			);
-			name = ARKitInteraction;
+			name = ARKitPorsche;
 			productName = ARKitInteraction;
 			productReference = 3929C4881E89EC2C00E00B60 /* ARKitPorsche.app */;
 			productType = "com.apple.product-type.application";
@@ -251,7 +251,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3929C4871E89EC2C00E00B60 /* ARKitInteraction */,
+				3929C4871E89EC2C00E00B60 /* ARKitPorsche */,
 			);
 		};
 /* End PBXProject section */
@@ -522,7 +522,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3929C49A1E89EC2C00E00B60 /* Build configuration list for PBXNativeTarget "ARKitInteraction" */ = {
+		3929C49A1E89EC2C00E00B60 /* Build configuration list for PBXNativeTarget "ARKitPorsche" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3929C49B1E89EC2C00E00B60 /* Debug */,

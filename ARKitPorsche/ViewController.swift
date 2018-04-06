@@ -221,7 +221,8 @@ class ViewController: UIViewController {
             lightBActive = false
         }
         ResetLightBtn.isEnabled = true
-        testBool = !testBool
+        
+        setPBR()
         
         BaseIntensity = 40.0
         
@@ -236,10 +237,22 @@ class ViewController: UIViewController {
     @IBAction func BtnBPressed(_ sender: Any) {
         ResetLightBtn.isEnabled = true
         lightBActive = !lightBActive
-        BaseIntensity = 60.0
+        BaseIntensity = 90.0
         
-        ambientLightNode.removeFromParentNode()
+        
+        setPhong()
+        
+        //sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.diffuse.intensity = 2
+        
+        if let environmentMap = UIImage(named: "Models.scnassets/environment_blur.exr") {
+            sceneView.scene.lightingEnvironment.contents = environmentMap
+        }
+        
+        //ambientLightNode.removeFromParentNode()
         self.sceneView.session.configuration?.isLightEstimationEnabled = true
+        
+        //print(sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color"))
+        print("AAAAAAAA")
         
         //print(lighting.sun(date: <#T##Date#>, lat: 48.894062, lon: 9.195464))
         
@@ -254,6 +267,8 @@ class ViewController: UIViewController {
     @IBAction func BtnCPressed(_ sender: Any) {
         mapperActive = !mapperActive
         ResetLightBtn.isEnabled = true
+        
+        setPBR()
         
         if lightBActive == true{
             lightBActive = false
@@ -286,6 +301,13 @@ class ViewController: UIViewController {
         // which illuminates the scene more every click
         RemoveAmbient()
         addAmbientLight()
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.reflective.contents = nil
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_rf_ok", recursively: true)?.geometry?.material(named: "Material__790color")?.reflective.contents = nil
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.reflective.contents = nil
+        
         EnvMapBtn.isEnabled = true
         EnvMapBtn.setTitle("Light C Start", for: .normal)
         if lightBActive == true{
@@ -332,6 +354,50 @@ class ViewController: UIViewController {
     
     func RemoveAmbient(){
         ambientLightNode.removeFromParentNode()
+    }
+    
+    func setPBR(){
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.lightingModel = SCNMaterial.LightingModel.physicallyBased
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_rf_ok", recursively: true)?.geometry?.material(named: "Material__790color")?.lightingModel = SCNMaterial.LightingModel.physicallyBased
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.lightingModel = SCNMaterial.LightingModel.physicallyBased
+        
+        turnOffLight()
+        
+    }
+    
+    func setPhong(){
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.lightingModel = SCNMaterial.LightingModel(rawValue: "Phong")
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_rf_ok", recursively: true)?.geometry?.material(named: "Material__790color")?.lightingModel = SCNMaterial.LightingModel(rawValue: "Phong")
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.lightingModel = SCNMaterial.LightingModel(rawValue: "Phong")
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.reflective.intensity = 1.5
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_rf_ok", recursively: true)?.geometry?.material(named: "Material__790color")?.reflective.intensity = 2
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.reflective.intensity = 2
+        
+        turnOnLight()
+        
+    }
+    
+    func turnOffLight(){
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot1", recursively: true)?.light?.intensity = 0
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot2", recursively: true)?.light?.intensity = 0
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot3", recursively: true)?.light?.intensity = 0
+    }
+    
+    func turnOnLight(){
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot1", recursively: true)?.light?.intensity = 2000
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot2", recursively: true)?.light?.intensity = 2000
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot3", recursively: true)?.light?.intensity = 1500
     }
     
     

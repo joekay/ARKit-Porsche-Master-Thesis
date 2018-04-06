@@ -15,6 +15,8 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
 			objectsViewController?.updateObjectAvailability(for: planeAnchor)
 		}
         
+        
+        
         // Settings for lighting environment incuding light intensity
         let lightingEnvironment = sceneView.scene.lightingEnvironment
         if let lightEstimate = session.currentFrame?.lightEstimate {
@@ -72,19 +74,27 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
     }
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        
+        counter = counter + 1
+        
         if mapperActive{
+        self.statusViewController.showMessage("Mapping environment, press again to stop")
         if let environmentMapper = self.environmentMapper {
             environmentMapper.updateMap(withFrame: frame)
         }
         }
         if lightBActive{
-            print("Light b active")
-            /*
-            //VTCreateCGImageFromCVPixelBuffer(frame.capturedImage, nil, )
-            sceneView.scene.lightingEnvironment.contents = CreateCGImageFromCVPixelBuffer(pixelBuffer: frame.capturedImage)*/
-            var cgImage: CGImage?
-            VTCreateCGImageFromCVPixelBuffer(frame.capturedImage, nil, &cgImage)
-             sceneView.scene.lightingEnvironment.contents = cgImage
+            
+            var img: CGImage?
+            VTCreateCGImageFromCVPixelBuffer(frame.capturedImage, nil, &img)
+            
+            if (counter % 3 == 0) {
+            sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.reflective.contents = img
+            
+            sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_rf_ok", recursively: true)?.geometry?.material(named: "Material__790color")?.reflective.contents = img
+
+            sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.reflective.contents = img
+            }
             
         }
     }
@@ -107,6 +117,23 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
         }
     }
     
+    /*func blurredImage(with sourceImage: CGImage) -> CGImage {
+        //  Create our blurred image
+        let context = CIContext(options: nil)
+        let inputImage = CIImage(cgImage: sourceImage)
+        //  Setting up Gaussian Blur
+        var filter = CIFilter(name: "CIGaussianBlur")
+        filter?.setValue(inputImage, forKey: kCIInputImageKey)
+        filter?.setValue(10.0, forKey: "inputRadius")
+        let result = filter?.value(forKey: kCIOutputImageKey) as? CIImage
+        
+        /*  CIGaussianBlur has a tendency to shrink the image a little, this ensures it matches
+         *  up exactly to the bounds of our original image */
+        
+        let cgImage = context.createCGImage(result ?? CIImage(), from: inputImage.extent)
+        return cgImage!
+    }*/
+    
     func sessionWasInterrupted(_ session: ARSession) {
 		// Hide content before going into the background.
 		virtualObjectLoader.loadedObjects.forEach { $0.isHidden = true }
@@ -121,4 +148,6 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
          */
 		return true
 	}
+    
+
 }

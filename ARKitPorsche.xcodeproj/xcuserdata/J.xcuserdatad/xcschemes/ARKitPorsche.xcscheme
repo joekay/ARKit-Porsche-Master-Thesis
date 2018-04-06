@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3929C4871E89EC2C00E00B60"
                BuildableName = "ARKitPorsche.app"
-               BlueprintName = "ARKitInteraction"
+               BlueprintName = "ARKitPorsche"
                ReferencedContainer = "container:ARKitPorsche.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3929C4871E89EC2C00E00B60"
             BuildableName = "ARKitPorsche.app"
-            BlueprintName = "ARKitInteraction"
+            BlueprintName = "ARKitPorsche"
             ReferencedContainer = "container:ARKitPorsche.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -57,7 +57,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3929C4871E89EC2C00E00B60"
             BuildableName = "ARKitPorsche.app"
-            BlueprintName = "ARKitInteraction"
+            BlueprintName = "ARKitPorsche"
             ReferencedContainer = "container:ARKitPorsche.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -76,7 +76,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3929C4871E89EC2C00E00B60"
             BuildableName = "ARKitPorsche.app"
-            BlueprintName = "ARKitInteraction"
+            BlueprintName = "ARKitPorsche"
             ReferencedContainer = "container:ARKitPorsche.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
