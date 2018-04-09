@@ -35,6 +35,7 @@ extension ViewController: VirtualObjectSelectionViewControllerDelegate {
 								   alignment: focusSquareAlignment,
 								   allowAnimation: false)
         virtualObject.name = "car"
+        self.turnOffLight()
         updateQueue.async {
             self.sceneView.scene.rootNode.addChildNode(virtualObject)
 			self.sceneView.addOrUpdateAnchor(for: virtualObject)

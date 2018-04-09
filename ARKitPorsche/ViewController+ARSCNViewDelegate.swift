@@ -75,10 +75,9 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         
-        counter = counter + 1
+        //counter = counter + 1
         
         if mapperActive{
-        self.statusViewController.showMessage("Mapping environment, press again to stop")
         if let environmentMapper = self.environmentMapper {
             environmentMapper.updateMap(withFrame: frame)
         }
@@ -88,14 +87,19 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
             var img: CGImage?
             VTCreateCGImageFromCVPixelBuffer(frame.capturedImage, nil, &img)
             
-            if (counter % 3 == 0) {
-            sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.reflective.contents = img
+            // Update reflection every 200 frame
+            //print(counter)
+            if (counter == 1 || counter % 1000 == 0) {
+                sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.reflective.contents = img
             
-            sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_rf_ok", recursively: true)?.geometry?.material(named: "Material__790color")?.reflective.contents = img
+                sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_rf_ok", recursively: true)?.geometry?.material(named: "Material__790color")?.reflective.contents = img
 
-            sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.reflective.contents = img
+                sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.reflective.contents = img
             }
             
+        }
+        if (counter > 5000){
+            counter = 0
         }
     }
     
@@ -124,7 +128,7 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
         //  Setting up Gaussian Blur
         var filter = CIFilter(name: "CIGaussianBlur")
         filter?.setValue(inputImage, forKey: kCIInputImageKey)
-        filter?.setValue(10.0, forKey: "inputRadius")
+        filter?.setValue(6.0, forKey: "inputRadius")
         let result = filter?.value(forKey: kCIOutputImageKey) as? CIImage
         
         /*  CIGaussianBlur has a tendency to shrink the image a little, this ensures it matches
