@@ -20,8 +20,29 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
         // Settings for lighting environment incuding light intensity
         let lightingEnvironment = sceneView.scene.lightingEnvironment
         if let lightEstimate = session.currentFrame?.lightEstimate {
-        lightingEnvironment.intensity = lightEstimate.ambientIntensity / BaseIntensity
-            //print(lightEstimate.ambientColorTemperature)
+            lightingEnvironment.intensity = lightEstimate.ambientIntensity / BaseIntensity
+            
+            if lightBActive{
+            if(lightEstimate.ambientIntensity > 1400){
+                estimatedLightIntensity = 1400
+            }else if(lightEstimate.ambientIntensity < 600){
+                estimatedLightIntensity = 600
+            }else{
+                estimatedLightIntensity = lightEstimate.ambientIntensity
+            }
+            
+            sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot1", recursively: true)?.light?.intensity = estimatedLightIntensity
+            
+            sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot2", recursively: true)?.light?.intensity = estimatedLightIntensity
+            
+            sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot3", recursively: true)?.light?.intensity = estimatedLightIntensity
+            
+            sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot4", recursively: true)?.light?.intensity = estimatedLightIntensity
+            
+            //print("AAA: " , estimatedLightIntensity)
+            //print("Intensity: " , lightEstimate.ambientIntensity," Temp: ", lightEstimate.ambientColorTemperature)
+            }
+            
         } else {
         lightingEnvironment.intensity = BaseIntensity
         }

@@ -39,10 +39,14 @@ class StatusViewController: UIViewController {
     
     @IBOutlet weak private var restartExperienceButton: UIButton!
 
+    @IBOutlet weak var cameraButton: UIButton!
+    
     // MARK: - Properties
     
     /// Trigerred when the "Restart Experience" button is tapped.
     var restartExperienceHandler: () -> Void = {}
+    
+    var cameraHandler: () -> Void = {}
     
     /// Seconds before the timer message should fade out. Adjust if the app needs longer transient messages.
     private let displayDuration: TimeInterval = 6
@@ -121,7 +125,11 @@ class StatusViewController: UIViewController {
         restartExperienceHandler()
     }
 	
-	// MARK: - Panel Visibility
+    @IBAction func takeScreenshot(_ sender: Any) {
+        cameraHandler()
+    }
+    
+    // MARK: - Panel Visibility
     
 	private func setMessageHidden(_ hide: Bool, animated: Bool) {
         // The panel starts out hidden, so show it before animating opacity.

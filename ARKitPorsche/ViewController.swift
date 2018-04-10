@@ -2,7 +2,6 @@ import ARKit
 import SceneKit
 import UIKit
 import ARKitEnvironmentMapper
-import CoreLocation // Sun position stuff
 
 class ViewController: UIViewController {
     
@@ -31,9 +30,11 @@ class ViewController: UIViewController {
     
     var testBool = false
     
+    var estimatedLightIntensity: CGFloat = 0
+    
     var BaseIntensity: CGFloat = 40.0
     
-    var counter: Int = 0;
+    var counter: Int = 0
     
     // UI Elements
     var focusSquare = FocusSquare()
@@ -45,17 +46,6 @@ class ViewController: UIViewController {
 	
 	// The view controller that displays the virtual object selection menu.
 	var objectsViewController: VirtualObjectSelectionViewController?
-    
-    
-    
-    var lighting = Lighting()
-    
-    
-    // SUNPOSITIONSTUFF
-    // var locManager = CLLocationManager()
-    // locManager.requestWhenInUseAuthorization()
-    
-    
     
     // MARK: - ARKit Configuration Properties
     
@@ -113,6 +103,10 @@ class ViewController: UIViewController {
         // Hook up status view controller callback(s).
         statusViewController.restartExperienceHandler = { [unowned self] in
             self.restartExperience()
+        }
+        
+        statusViewController.cameraHandler = { [unowned self] in
+            self.screenShotMethod()
         }
     }
 
@@ -226,7 +220,7 @@ class ViewController: UIViewController {
         
         BaseIntensity = 40.0
         
-        ambientLightNode.removeFromParentNode()
+        //ambientLightNode.removeFromParentNode()
         self.sceneView.session.configuration?.isLightEstimationEnabled = true
         
         if let environmentMap = UIImage(named: "Models.scnassets/environment_blur.exr") {
@@ -235,11 +229,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func BtnBPressed(_ sender: Any) {
+        
         ResetLightBtn.isEnabled = true
         lightBActive = !lightBActive
         BaseIntensity = 90.0
-        
-        
         setPhong()
         
         //sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.diffuse.intensity = 2
@@ -250,16 +243,6 @@ class ViewController: UIViewController {
         
         //ambientLightNode.removeFromParentNode()
         self.sceneView.session.configuration?.isLightEstimationEnabled = true
-        
-        //print(sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color"))
-        print("AAAAAAAA")
-        
-        //print(lighting.sun(date: <#T##Date#>, lat: 48.894062, lon: 9.195464))
-        
-        /*if let environmentMap = UIImage(named: "Models.scnassets/StaticEnvMap/environment.jpg") {
-            sceneView.scene.lightingEnvironment.contents = environmentMap
-            //print(sceneView.scene.lightingEnvironment.intensity)
-        }*/
         
     }
     
@@ -284,7 +267,7 @@ class ViewController: UIViewController {
             
             EnvMapBtn.setTitle("Light C Done", for: .normal)
             
-            ambientLightNode.removeFromParentNode()
+            //ambientLightNode.removeFromParentNode()
             self.sceneView.session.configuration?.isLightEstimationEnabled = false
             
             sceneView.scene.lightingEnvironment.contents = environmentMapper?.currentEnvironmentMap(as: .cgImage)
@@ -343,8 +326,8 @@ class ViewController: UIViewController {
         ambientLightNode = SCNNode()
         ambientLightNode.light = SCNLight()
         ambientLightNode.light!.type = .ambient
-        ambientLightNode.light!.color = UIColor.darkGray
-        ambientLightNode.light!.intensity = 8000
+        ambientLightNode.light!.color = UIColor.white
+        ambientLightNode.light!.intensity = 600
         
         ResetLightBtn.isEnabled = false
         
@@ -365,6 +348,8 @@ class ViewController: UIViewController {
         
         sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.lightingModel = SCNMaterial.LightingModel.physicallyBased
         
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spoiler", recursively: true)?.geometry?.material(named: "Material__79")?.lightingModel = SCNMaterial.LightingModel.physicallyBased
+        
         turnOffLight()
         
     }
@@ -376,11 +361,15 @@ class ViewController: UIViewController {
         
         sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.lightingModel = SCNMaterial.LightingModel(rawValue: "Phong")
         
-        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.reflective.intensity = 1
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spoiler", recursively: true)?.geometry?.material(named: "Material__79")?.lightingModel = SCNMaterial.LightingModel(rawValue: "Phong")
         
-        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_rf_ok", recursively: true)?.geometry?.material(named: "Material__790color")?.reflective.intensity = 1
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.reflective.intensity = 1.3
         
-        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.reflective.intensity = 1
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_rf_ok", recursively: true)?.geometry?.material(named: "Material__790color")?.reflective.intensity = 1.3
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.reflective.intensity = 1.3
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spoiler", recursively: true)?.geometry?.material(named: "Material__79")?.reflective.intensity = 1.3
         
         turnOnLight()
         
@@ -397,13 +386,21 @@ class ViewController: UIViewController {
     }
     
     func turnOnLight(){
-        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot1", recursively: true)?.light?.intensity = 1200
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot1", recursively: true)?.light?.intensity = 1100
         
-        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot2", recursively: true)?.light?.intensity = 1200
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot2", recursively: true)?.light?.intensity = 1100
         
-        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot3", recursively: true)?.light?.intensity = 1200
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot3", recursively: true)?.light?.intensity = 1100
         
-        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot4", recursively: true)?.light?.intensity = 1200
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot4", recursively: true)?.light?.intensity = 1100
+    }
+    
+    func screenShotMethod() {
+        //Create the UIImage
+        let image = sceneView.snapshot()
+        //Save it to the camera roll
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+    self.statusViewController.showMessage("Screenshot taken")
     }
     
     

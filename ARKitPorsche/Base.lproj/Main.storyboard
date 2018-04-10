@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="1uT-CF-YpX" userLabel="Message Panel">
-                                <rect key="frame" x="60" y="20" width="125" height="31.666666666666671"/>
+                                <rect key="frame" x="119" y="20" width="125" height="31.666666666666671"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SfJ-mv-Jb9">
                                     <rect key="frame" x="0.0" y="0.0" width="125" height="31.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,26 +81,38 @@
                                     <action selector="restartExperience:" destination="ri3-7p-e6d" eventType="touchUpInside" id="g0X-9j-zRG"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJB-3U-4GQ" userLabel="Camera Button">
+                                <rect key="frame" x="56" y="20" width="33" height="33"/>
+                                <state key="normal" image="camera"/>
+                                <connections>
+                                    <action selector="CameraBtn:" destination="h2X-UV-2L1" eventType="touchUpInside" id="dCY-kA-ZJU"/>
+                                    <action selector="takeScreenshot:" destination="ri3-7p-e6d" eventType="touchUpInside" id="g4g-CX-Qfj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="aSK-t0-G4r" firstAttribute="top" secondItem="wYK-n4-ypp" secondAttribute="top" id="00T-V7-ZZG"/>
                             <constraint firstItem="aSK-t0-G4r" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1uT-CF-YpX" secondAttribute="trailing" constant="8" id="7s3-gZ-Vdh"/>
                             <constraint firstItem="wYK-n4-ypp" firstAttribute="trailing" secondItem="aSK-t0-G4r" secondAttribute="trailing" id="AKH-fs-H3Q"/>
-                            <constraint firstItem="1uT-CF-YpX" firstAttribute="leading" secondItem="wYK-n4-ypp" secondAttribute="leading" constant="16" id="EfQ-ka-33s"/>
+                            <constraint firstItem="1uT-CF-YpX" firstAttribute="leading" secondItem="wYK-n4-ypp" secondAttribute="leading" constant="75" id="EfQ-ka-33s"/>
                             <constraint firstItem="1uT-CF-YpX" firstAttribute="top" secondItem="aSK-t0-G4r" secondAttribute="top" constant="20" id="J9G-Za-9yG"/>
+                            <constraint firstItem="1uT-CF-YpX" firstAttribute="leading" secondItem="VJB-3U-4GQ" secondAttribute="trailing" constant="30" id="KH3-My-bBQ"/>
+                            <constraint firstItem="VJB-3U-4GQ" firstAttribute="top" secondItem="wYK-n4-ypp" secondAttribute="top" constant="20" id="ZZ9-YW-xKB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wYK-n4-ypp"/>
                     </view>
                     <connections>
+                        <outlet property="cameraButton" destination="VJB-3U-4GQ" id="pln-bx-4kp"/>
                         <outlet property="messageLabel" destination="x6b-bh-aZK" id="103-E5-rNP"/>
                         <outlet property="messagePanel" destination="1uT-CF-YpX" id="taj-MT-abc"/>
                         <outlet property="restartExperienceButton" destination="aSK-t0-G4r" id="T3U-OD-TP3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g9h-Vm-ZUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="h2X-UV-2L1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="626" y="-583"/>
+            <point key="canvasLocation" x="625.86206896551732" y="-583.20000000000005"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -138,6 +150,11 @@
                                 <state key="normal" image="add">
                                     <color key="titleColor" red="0.85882352941176465" green="0.72941176470588232" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="showVirtualObjectSelectionViewController" destination="BV1-FR-VrT" eventType="touchUpInside" id="zNz-qB-P16"/>
                                 </connections>
@@ -149,6 +166,11 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="91" id="sAG-Im-4lB"/>
                                 </constraints>
                                 <state key="normal" title="Light A"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="ARKitLightingBtn:" destination="mIu-R6-9gx" eventType="touchUpInside" id="UjB-yR-haj"/>
                                     <action selector="BtnAPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="C2f-ix-760"/>
@@ -162,6 +184,11 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="91" id="3ci-uV-Fnh"/>
                                 </constraints>
                                 <state key="normal" title="Light B"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="BtnBPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="dUr-Sx-8BH"/>
                                 </connections>
@@ -173,6 +200,11 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="91" id="poS-BI-tNo"/>
                                 </constraints>
                                 <state key="normal" title="Light C Start"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="BtnCPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Dcd-la-8i4"/>
                                 </connections>
@@ -184,6 +216,11 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="91" id="Dse-ss-RGY"/>
                                 </constraints>
                                 <state key="normal" title="Reset Light"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="ResetLight:" destination="BV1-FR-VrT" eventType="touchUpInside" id="4ZT-dW-ln3"/>
                                 </connections>
@@ -197,6 +234,11 @@
                                 <state key="normal" title="Hide">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="ShowHideSettings:" destination="BV1-FR-VrT" eventType="touchUpInside" id="qDc-jo-3kf"/>
                                 </connections>
@@ -328,6 +370,7 @@
     </scenes>
     <resources>
         <image name="add" width="48" height="48"/>
+        <image name="camera" width="33" height="33"/>
         <image name="restart" width="20" height="23"/>
         <image name="restartPressed" width="20" height="23"/>
     </resources>
