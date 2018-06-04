@@ -27,12 +27,15 @@ class ViewController: UIViewController {
     // Bool for starting/stopping environment mapper
     var mapperActive = false
     var lightBActive = false
+    var testRec = false
     
     var testBool = false
     
     var estimatedLightIntensity: CGFloat = 0
     
     var BaseIntensity: CGFloat = 40.0
+    
+    var testRecImg: UIImage!
     
     var counter: Int = 0
     
@@ -216,6 +219,7 @@ class ViewController: UIViewController {
         }
         ResetLightBtn.isEnabled = true
         
+        setNormalDiffuseIntensity()
         setPBR()
         
         BaseIntensity = 40.0
@@ -231,15 +235,21 @@ class ViewController: UIViewController {
     @IBAction func BtnBPressed(_ sender: Any) {
         
         ResetLightBtn.isEnabled = true
-        lightBActive = !lightBActive
-        BaseIntensity = 90.0
-        setPhong()
+        //lightBActive = !lightBActive
+        testRec = !testRec
+        //BaseIntensity = 90.0
+        BaseIntensity = 350.0
+        //setPhong()
+        setHighDiffuseIntensity()
+        setPBR()
         
         //sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.diffuse.intensity = 2
         
-        if let environmentMap = UIImage(named: "Models.scnassets/environment_blur.exr") {
+        /*if let environmentMap = UIImage(named: "Models.scnassets/environment_blur.exr") {
             sceneView.scene.lightingEnvironment.contents = environmentMap
-        }
+        }*/
+        
+        sceneView.scene.lightingEnvironment.contents = testRecImg
         
         //ambientLightNode.removeFromParentNode()
         self.sceneView.session.configuration?.isLightEstimationEnabled = true
@@ -373,6 +383,26 @@ class ViewController: UIViewController {
         
         turnOnLight()
         
+    }
+    
+    func setHighDiffuseIntensity(){
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.diffuse.intensity = 1.4
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_rf_ok", recursively: true)?.geometry?.material(named: "Material__790color")?.diffuse.intensity = 1.4
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.diffuse.intensity = 1.4
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spoiler", recursively: true)?.geometry?.material(named: "Material__79")?.diffuse.intensity = 1.4
+    }
+    
+    func setNormalDiffuseIntensity(){
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "body", recursively: true)?.geometry?.material(named: "Material__792 color")?.diffuse.intensity = 1
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_rf_ok", recursively: true)?.geometry?.material(named: "Material__790color")?.diffuse.intensity = 1
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.diffuse.intensity = 1
+        
+        sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spoiler", recursively: true)?.geometry?.material(named: "Material__79")?.diffuse.intensity = 1
     }
     
     func turnOffLight(){

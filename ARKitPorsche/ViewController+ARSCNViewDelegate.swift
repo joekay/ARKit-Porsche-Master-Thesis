@@ -15,8 +15,6 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
 			objectsViewController?.updateObjectAvailability(for: planeAnchor)
 		}
         
-        
-        
         // Settings for lighting environment incuding light intensity
         let lightingEnvironment = sceneView.scene.lightingEnvironment
         if let lightEstimate = session.currentFrame?.lightEstimate {
@@ -40,8 +38,9 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
             sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "spot4", recursively: true)?.light?.intensity = estimatedLightIntensity
             
             //print("AAA: " , estimatedLightIntensity)
-            //print("Intensity: " , lightEstimate.ambientIntensity," Temp: ", lightEstimate.ambientColorTemperature)
+            print("Intensity: " , lightEstimate.ambientIntensity," Temp: ", lightEstimate.ambientColorTemperature)
             }
+            
             
         } else {
         lightingEnvironment.intensity = BaseIntensity
@@ -96,7 +95,7 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         
-        //counter = counter + 1
+        counter = counter + 1
         
         if mapperActive{
         if let environmentMapper = self.environmentMapper {
@@ -117,10 +116,41 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
 
                 sceneView.scene.rootNode.childNode(withName: "car", recursively: true)?.childNode(withName: "door_lf_ok", recursively: true)?.geometry?.material(named: "Material__791color")?.reflective.contents = img
             }
-            
         }
         if (counter > 5000){
             counter = 0
+        }
+        if testRec{
+            //if (counter == 1 || counter % 1000 == 0) {
+                
+                var img: CGImage?
+                VTCreateCGImageFromCVPixelBuffer(frame.capturedImage, nil, &img)
+                
+                let hej = UIImage(cgImage: img!)
+                UIImageWriteToSavedPhotosAlbum(hej, nil, nil, nil)
+                
+                let bottomImage = UIImage(named: "roomgrey2")!
+                let topImage = hej
+                
+                let newSize = CGSize(width: 2000, height: 1000) // set this to what you need
+                UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+                
+                bottomImage.draw(in: CGRect(origin: CGPoint(x: 0,y :0), size: newSize))
+                topImage.draw(in: CGRect(origin: CGPoint(x: 0,y :0), size: newSize))
+                
+                var newImage = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+            
+                //testRecImg = newImage
+            
+                //testRecImg = increaseContrast(newImage!)
+            
+                testRecImg = increaseContrast(newImage!)
+                UIImageWriteToSavedPhotosAlbum(testRecImg, nil, nil, nil)
+            
+                testRec = !testRec
+            //}
+            
         }
     }
     
@@ -142,14 +172,27 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
         }
     }
     
+    func fadeImage(with sourceImage: CGImage) -> CGImage {
+     //  Create our blurred image
+     let context = CIContext(options: nil)
+     let inputImage = CIImage(cgImage: sourceImage)
+        
+     var filter = CIFilter(name: "CIPhotoEffectFade")
+     let result = filter?.value(forKey: kCIOutputImageKey) as? CIImage
+     
+     let cgImage = context.createCGImage(result ?? CIImage(), from: inputImage.extent)
+     return cgImage!
+     }
+    
     /*func blurredImage(with sourceImage: CGImage) -> CGImage {
         //  Create our blurred image
         let context = CIContext(options: nil)
         let inputImage = CIImage(cgImage: sourceImage)
         //  Setting up Gaussian Blur
-        var filter = CIFilter(name: "CIGaussianBlur")
-        filter?.setValue(inputImage, forKey: kCIInputImageKey)
-        filter?.setValue(6.0, forKey: "inputRadius")
+        //var filter = CIFilter(name: "CIGaussianBlur")
+        //filter?.setValue(inputImage, forKey: kCIInputImageKey)
+        //filter?.setValue(6.0, forKey: "inputRadius")
+        var filter = CIFilter(name: "CIGammaAdjust")
         let result = filter?.value(forKey: kCIOutputImageKey) as? CIImage
         
         /*  CIGaussianBlur has a tendency to shrink the image a little, this ensures it matches
@@ -158,6 +201,59 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
         let cgImage = context.createCGImage(result ?? CIImage(), from: inputImage.extent)
         return cgImage!
     }*/
+    
+    func saveImage(hej: String) {
+        let bottomImage = UIImage(named: "roomgrey2")!
+        let topImage = hej
+        
+        let newSize = CGSize(width: 2000, height: 1000) // set this to what you need
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        
+        bottomImage.draw(in: CGRect(origin: CGPoint(x: 0,y :0), size: newSize))
+        topImage.draw(in: CGRect(origin: CGPoint(x: 0,y :0), size: newSize))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+    }
+    
+    func increaseContrast(_ image: UIImage) -> UIImage {
+        
+        // lekte med body refleciton intensity
+        let inputImage = CIImage(image: image)!
+        let parameters = [
+            "inputContrast": NSNumber(value: 3)
+        ]
+        var outputImage = inputImage.applyingFilter("CIColorControls", parameters: parameters)
+        
+        let inputVector = CIVector(x: 6500, y: 0)
+        let targetVector = CIVector(x: 8000, y: 0)
+        
+        let parameters1 = [
+            "inputNeutral": inputVector,
+            "inputTargetNeutral": targetVector
+        ]
+        
+        let parameters2 = [
+            "inputPower": 0.65
+        ]
+        
+        outputImage = outputImage.applyingFilter("CIPhotoEffectFade")
+        outputImage = outputImage.applyingFilter("CIPhotoEffectFade")
+        outputImage = outputImage.applyingFilter("CIPhotoEffectFade")
+        
+        //outputImage = outputImage.applyingFilter("CITemperatureAndTint", parameters: parameters1)
+        
+        outputImage = outputImage.applyingFilter("CIGammaAdjust", parameters: parameters2)
+        
+        outputImage = outputImage.applyingFilter("CIPhotoEffectFade")
+        outputImage = outputImage.applyingFilter("CIPhotoEffectFade")
+        outputImage = outputImage.applyingFilter("CIPhotoEffectFade")
+        
+        let context = CIContext(options: nil)
+        let img = context.createCGImage(outputImage, from: outputImage.extent)!
+        return UIImage(cgImage: img)
+    }
+
     
     func sessionWasInterrupted(_ session: ARSession) {
 		// Hide content before going into the background.
